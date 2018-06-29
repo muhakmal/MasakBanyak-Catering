@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/navigation_packets"
+        android:icon="@drawable/ic_dashboard_gray_24dp"
+        android:title="Paket" />
+    <item
+        android:id="@+id/navigation_transactions"
+        android:icon="@drawable/ic_transaction_gray_24dp"
+        android:title="Transaksi" />
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_face_gray_24dp"
+        android:title="Profil"
+        />
+
+</menu>
