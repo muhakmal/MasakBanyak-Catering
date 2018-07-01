@@ -17,8 +17,20 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:logo="@drawable/ic_logo_icon"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/ic_masakbanyak_catering"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:paddingHorizontal="2dp"
+                    app:srcCompat="@drawable/ic_mb_cat_logo_white" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
