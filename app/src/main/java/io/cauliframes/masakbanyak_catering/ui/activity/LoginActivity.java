@@ -2,12 +2,14 @@ package io.cauliframes.masakbanyak_catering.ui.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -34,15 +36,16 @@ public class LoginActivity extends AppCompatActivity {
   private EditText mEmailInput;
   private EditText mPasswordInput;
   private Button mLoginButton;
-  private FloatingActionButton mToRegisterButton;
-  
+  //private FloatingActionButton mToRegisterButton;
+  private Button mToRegisterButton;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
-    
     Components.getApplicationComponent().inject(this);
-  
+
+
     if (mPreferences.contains("access_token") && mPreferences.contains("refresh_token")) {
       Intent mainIntent = new Intent(this, MainActivity.class);
       startActivity(mainIntent);
@@ -54,7 +57,8 @@ public class LoginActivity extends AppCompatActivity {
     mEmailInput = findViewById(R.id.emailEditText);
     mPasswordInput = findViewById(R.id.passwordEditText);
     mLoginButton = findViewById(R.id.loginButton);
-    mToRegisterButton = findViewById(R.id.fab);
+    //mToRegisterButton = findViewById(R.id.fab);
+    mToRegisterButton = findViewById(R.id.registerButtonAtLogin);
     
     setSupportActionBar(toolbar);
     
@@ -90,12 +94,20 @@ public class LoginActivity extends AppCompatActivity {
         }
       });
     });
-    
-    mToRegisterButton.setOnClickListener(view -> Snackbar.make(view, "Klik disini untuk mendaftar.", Snackbar.LENGTH_LONG)
+
+    mToRegisterButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(intent);
+      }
+    });
+
+    /*mToRegisterButton.setOnClickListener(view -> Snackbar.make(view, "Klik disini untuk mendaftar.", Snackbar.LENGTH_LONG)
         .setAction("Register", view1 -> {
           Intent intent = new Intent(this, RegisterActivity.class);
           startActivity(intent);
-        }).show());
+        }).show());*/
   }
   
   private void showResponse(String response) {
