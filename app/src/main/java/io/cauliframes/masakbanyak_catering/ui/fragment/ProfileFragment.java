@@ -94,6 +94,8 @@ public class ProfileFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+  
+    mLogoutButton.setOnClickListener(view1 -> mCateringViewModel.logout(mCatering));
     
     mRefreshLayout.setRefreshing(true);
     mRefreshLayout.setOnRefreshListener(mCateringViewModel::refreshCatering);
