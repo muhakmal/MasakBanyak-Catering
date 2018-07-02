@@ -24,12 +24,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="center_horizontal"
+                android:text="Foto Profil"
+                app:layout_constraintBottom_toTopOf="@id/cateringAvatarImageView"
+                app:layout_constraintEnd_toEndOf="@id/cateringAvatarImageView"
+                app:layout_constraintStart_toStartOf="@id/cateringAvatarImageView" />
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/cateringAvatarImageView"
                 android:layout_width="88dp"
                 android:layout_height="88dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/ic_camera_alt_black_24dp"
                 app:civ_border_color="@color/colorPrimaryDark"
                 app:civ_border_width="2.5dp"
                 app:layout_constraintEnd_toStartOf="@+id/cateringRating"
@@ -38,12 +51,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="center_horizontal"
+                android:text="Rating Catering"
+                app:layout_constraintBottom_toTopOf="@id/cateringRating"
+                app:layout_constraintEnd_toEndOf="@id/cateringRating"
+                app:layout_constraintStart_toStartOf="@id/cateringRating" />
+
             <me.itangqi.waveloadingview.WaveLoadingView
                 android:id="@+id/cateringRating"
                 android:layout_width="88dp"
                 android:layout_height="88dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/cateringAvatarImageView"
@@ -53,6 +78,16 @@
                 app:wlv_titleCenterStrokeColor="@color/colorAccent"
                 app:wlv_waveColor="@color/colorPrimary" />
 
+
+            <TextView
+                android:id="@+id/namaCatering"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_light"
+                android:text="Nama Catering"
+                app:layout_constraintBottom_toTopOf="@id/cateringName"
+                app:layout_constraintStart_toStartOf="@id/cateringName" />
+
             <EditText
                 android:id="@+id/cateringName"
                 android:layout_width="match_parent"
@@ -61,15 +96,27 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/background_04"
-                android:fontFamily="@font/rubik_light"
+                android:fontFamily="@font/rubik_regular"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:maxLines="1"
+                android:padding="5dp"
+                android:text="Nama Catering"
                 android:textColor="@android:color/tab_indicator_text"
-                android:textSize="27sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/namaCatering"
                 app:layout_constraintTop_toBottomOf="@id/cateringRating" />
+
+            <TextView
+                android:id="@+id/tvAlamatCatering"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/rubik_light"
+                android:text="Alamat Catering"
+                app:layout_constraintBottom_toTopOf="@id/cateringAddress"
+                app:layout_constraintStart_toStartOf="@id/cateringAddress"
+                app:layout_constraintTop_toBottomOf="@id/cateringName" />
 
             <EditText
                 android:id="@+id/cateringAddress"
@@ -77,16 +124,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/background_04"
-                android:fontFamily="@font/rubik_light"
+                android:fontFamily="@font/rubik_regular"
                 android:imeOptions="actionDone"
                 android:inputType="text"
+                android:padding="5dp"
+                android:text="422 Baker Street"
                 android:textColor="@android:color/tab_indicator_text"
-                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cateringName" />
+                app:layout_constraintTop_toBottomOf="@id/tvAlamatCatering" />
+
+            <TextView
+                android:id="@+id/tvNoTelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/rubik_light"
+                android:text="Nomor Telepon Catering"
+                app:layout_constraintBottom_toTopOf="@id/cateringPhoneNumber"
+                app:layout_constraintStart_toStartOf="@id/cateringPhoneNumber"
+                app:layout_constraintTop_toBottomOf="@id/cateringAddress" />
 
             <EditText
                 android:id="@+id/cateringPhoneNumber"
@@ -94,17 +152,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/background_04"
-                android:fontFamily="@font/rubik_light"
+                android:fontFamily="@font/rubik_regular"
                 android:imeOptions="actionDone"
                 android:inputType="numberDecimal"
                 android:maxLines="1"
+                android:padding="5dp"
+                android:text="08123456789"
                 android:textColor="@android:color/tab_indicator_text"
-                android:textSize="29sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cateringAddress" />
+                app:layout_constraintTop_toBottomOf="@id/tvNoTelp" />
+
+            <TextView
+                android:id="@+id/tvEmailCatering"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/rubik_light"
+                android:text="Email Catering"
+                app:layout_constraintBottom_toTopOf="@id/cateringEmail"
+                app:layout_constraintStart_toStartOf="@id/cateringEmail"
+                app:layout_constraintTop_toBottomOf="@id/cateringPhoneNumber" />
 
             <TextView
                 android:id="@+id/cateringEmail"
@@ -112,39 +181,41 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/background_04"
-                android:fontFamily="@font/rubik_light"
-                android:textColor="@android:color/tab_indicator_text"
-                android:textSize="32sp"
+                android:background="@drawable/background_04_disable_gray"
+                android:fontFamily="@font/rubik_regular"
+                android:padding="8dp"
+                android:text="imitationspring@gmail.com"
+                android:textColor="@color/disableGreyText"
+                android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cateringPhoneNumber" />
+                app:layout_constraintTop_toBottomOf="@id/tvEmailCatering" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <Button
         android:id="@+id/updateCateringButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/background_05"
-        android:text="UPDATE"
-        android:textColor="@color/colorAccentDark"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginHorizontal="32dp"
+        android:background="@drawable/background_01"
+        android:text="Perbarui Profil"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/background_05"
-        android:text="logout"
-        android:textColor="@color/colorAccentDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="Logout"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/updateCateringButton" />
+
 </android.support.constraint.ConstraintLayout>
