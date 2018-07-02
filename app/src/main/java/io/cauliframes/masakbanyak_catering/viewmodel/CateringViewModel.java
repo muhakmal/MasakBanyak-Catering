@@ -62,4 +62,16 @@ public class CateringViewModel extends ViewModel {
   public void addPacket(Packet packet) {
     repository.addPacket(packet);
   }
+  
+  public void editPacket(Packet packet) {
+  
+  }
+  
+  public void deletePacket(Packet packet) {
+  
+  }
+  
+  public void logout(Catering catering){
+  
+  }
 }

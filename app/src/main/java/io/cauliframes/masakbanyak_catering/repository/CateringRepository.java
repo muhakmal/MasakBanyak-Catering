@@ -2,6 +2,8 @@ package io.cauliframes.masakbanyak_catering.repository;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
@@ -14,6 +16,7 @@ import javax.inject.Inject;
 
 import io.cauliframes.masakbanyak_catering.model.Catering;
 import io.cauliframes.masakbanyak_catering.model.Packet;
+import io.cauliframes.masakbanyak_catering.ui.activity.LoginActivity;
 import io.cauliframes.masakbanyak_catering.util.Util;
 import io.cauliframes.masakbanyak_catering.webservice.MasakBanyakWebService;
 import okhttp3.ResponseBody;
@@ -27,12 +30,14 @@ public class CateringRepository {
   private MutableLiveData<Packet> packetLiveData = new MutableLiveData<>();
   private MutableLiveData<Util.Event<String>> notificationLiveData = new MutableLiveData<>();
   
+  private Context context;
   private SharedPreferences preferences;
   private JWT jwt;
   private MasakBanyakWebService webService;
   
   @Inject
-  public CateringRepository(SharedPreferences preferences, JWT jwt, MasakBanyakWebService webService) {
+  public CateringRepository(Context context, SharedPreferences preferences, JWT jwt, MasakBanyakWebService webService) {
+    this.context = context;
     this.preferences = preferences;
     this.jwt = jwt;
     this.webService = webService;
@@ -148,6 +153,43 @@ public class CateringRepository {
             } catch (IOException e) {
               e.printStackTrace();
             }
+          }
+        }
+  
+        @Override
+        public void onFailure(Call<ResponseBody> call, Throwable t) {
+          Log.d("Network Call Failure", t.toString());
+        }
+      });
+    });
+  }
+  
+  public void editPacket(Packet packet) {
+  
+  }
+  
+  public void deletePacket(Packet packet) {
+  
+  }
+  
+  public void logout(Catering catering){
+    Util.authorizeAndExecuteCall(preferences, jwt, webService, (access_token, webservice) -> {
+      String refresh_token = preferences.getString("refresh_token", null);
+      String catering_id = catering.getCatering_id();
+      
+      Call<ResponseBody> call = webservice.logout(refresh_token, catering_id);
+      
+      call.enqueue(new Callback<ResponseBody>() {
+        @Override
+        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+          if(response.isSuccessful()){
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+  
+            Intent intent = new Intent(context, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            context.startActivity(intent);
           }
         }
   
