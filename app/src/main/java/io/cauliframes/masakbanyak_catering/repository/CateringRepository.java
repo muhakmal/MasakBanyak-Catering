@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import io.cauliframes.masakbanyak_catering.di.SessionScope;
 import io.cauliframes.masakbanyak_catering.model.Catering;
 import io.cauliframes.masakbanyak_catering.model.Packet;
 import io.cauliframes.masakbanyak_catering.ui.activity.LoginActivity;
@@ -24,6 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@SessionScope
 public class CateringRepository {
   private MutableLiveData<Catering> cateringLiveData = new MutableLiveData<>();
   private MutableLiveData<ArrayList<Packet>> packetsLiveData = new MutableLiveData<>();

@@ -72,6 +72,6 @@ public class CateringViewModel extends ViewModel {
   }
   
   public void logout(Catering catering){
-  
+    repository.logout(catering);
   }
 }
