@@ -1,5 +1,6 @@
 package io.cauliframes.masakbanyak_catering.ui.fragment;
 
+import android.app.AlertDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -51,6 +53,7 @@ public class ProfileFragment extends Fragment {
   private TextView mCateringEmailText;
   private Button mUpdateCateringButton;
   private Button mLogoutButton;
+  private AlertDialog mLogoutDialog;
   
   private OnFragmentInteractionListener mListener;
   
@@ -88,14 +91,16 @@ public class ProfileFragment extends Fragment {
     mUpdateCateringButton = view.findViewById(R.id.updateCateringButton);
     mLogoutButton = view.findViewById(R.id.logoutButton);
     
+    initializeLogoutDialog();
+    
     return view;
   }
   
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-  
-    mLogoutButton.setOnClickListener(view1 -> mCateringViewModel.logout(mCatering));
+    
+    mLogoutButton.setOnClickListener(view1 -> mLogoutDialog.show());
     
     mRefreshLayout.setRefreshing(true);
     mRefreshLayout.setOnRefreshListener(mCateringViewModel::refreshCatering);
@@ -109,14 +114,14 @@ public class ProfileFragment extends Fragment {
       mCatering = catering;
       
       Picasso.get().load(MASAKBANYAK_URL + mCatering.getAvatar()).fit().centerCrop().into(mCateringAvatarImage);
-  
+      
       mCateringRating.setCenterTitle(Double.toString(mCatering.getTotalRating()));
-      if(mCatering.getTotalRating() == 0){
+      if (mCatering.getTotalRating() == 0) {
         mCateringRating.setProgressValue(8);
         mCateringRating.setAmplitudeRatio(8);
-      }else{
-        mCateringRating.setProgressValue((int) mCatering.getTotalRating()*100/5-9);
-        mCateringRating.setAmplitudeRatio((int) mCatering.getTotalRating()*100/5-9);
+      } else {
+        mCateringRating.setProgressValue((int) mCatering.getTotalRating() * 100 / 5 - 9);
+        mCateringRating.setAmplitudeRatio((int) mCatering.getTotalRating() * 100 / 5 - 9);
       }
       
       mCateringNameInput.setText(catering.getName());
@@ -156,5 +161,18 @@ public class ProfileFragment extends Fragment {
     void onFragmentInteraction(Uri uri);
   }
   
-  
+  public void initializeLogoutDialog() {
+    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+    
+    builder.setMessage("Apakah anda yakin ingin keluar?")
+        .setTitle("Keluar Dari Akun.")
+        .setNegativeButton("Tidak", null)
+        .setPositiveButton("Ya", (dialogInterface, i) -> {
+          mRefreshLayout.setRefreshing(true);
+          mCateringViewModel.logout(mCatering);
+          dialogInterface.dismiss();
+        });
+    
+    mLogoutDialog = builder.create();
+  }
 }
