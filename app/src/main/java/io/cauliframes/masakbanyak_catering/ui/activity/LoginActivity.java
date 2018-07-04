@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
   private EditText mEmailInput;
   private EditText mPasswordInput;
   private Button mLoginButton;
-  //private FloatingActionButton mToRegisterButton;
   private Button mToRegisterButton;
 
   @Override
@@ -57,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
     mEmailInput = findViewById(R.id.emailEditText);
     mPasswordInput = findViewById(R.id.passwordEditText);
     mLoginButton = findViewById(R.id.loginButton);
-    //mToRegisterButton = findViewById(R.id.fab);
     mToRegisterButton = findViewById(R.id.registerButtonAtLogin);
     
     setSupportActionBar(toolbar);
@@ -102,12 +100,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
       }
     });
-
-    /*mToRegisterButton.setOnClickListener(view -> Snackbar.make(view, "Klik disini untuk mendaftar.", Snackbar.LENGTH_LONG)
-        .setAction("Register", view1 -> {
-          Intent intent = new Intent(this, RegisterActivity.class);
-          startActivity(intent);
-        }).show());*/
+    
   }
   
   private void showResponse(String response) {
